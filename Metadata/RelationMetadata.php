@@ -8,6 +8,7 @@ class RelationMetadata implements RelationMetadataInterface
     private $route;
     private $params;
     private $content;
+    private $templated = false;
 
     public function __construct($rel, $route)
     {
@@ -66,5 +67,21 @@ class RelationMetadata implements RelationMetadataInterface
     public function getContent()
     {
         return $this->content;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getTemplated()
+    {
+        return $this->templated;
+    }
+
+    /**
+     * @param boolean $templated
+     */
+    public function setTemplated($templated)
+    {
+        $this->templated = $templated;
     }
 }

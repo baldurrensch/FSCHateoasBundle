@@ -9,10 +9,12 @@ use FSC\HateoasBundle\Model\Link;
 abstract class AbstractLinkFactory
 {
     protected $urlGenerator;
+    protected $templatedUrlGenerator;
 
-    public function __construct(UrlGeneratorInterface $urlGenerator)
+    public function __construct(UrlGeneratorInterface $urlGenerator, UrlGeneratorInterface $templatedUrlGenerator = null)
     {
         $this->urlGenerator = $urlGenerator;
+        $this->templatedUrlGenerator = $templatedUrlGenerator;
     }
 
     public static function createLink($rel, $href)
@@ -24,10 +26,13 @@ abstract class AbstractLinkFactory
         return $link;
     }
 
-    public function generateUrl($name, $parameters = array())
+    public function generateUrl($name, $parameters = array(), $templated = false)
     {
         ksort($parameters); // Have consistent url query strings, for the tests
+        var_dump($templated);
 
-        return $this->urlGenerator->generate($name, $parameters);
+        $urlGenerator = $templated ? $this->templatedUrlGenerator : $this->urlGenerator;
+
+        return $urlGenerator->generate($name, $parameters);
     }
 }

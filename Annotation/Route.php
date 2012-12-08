@@ -19,4 +19,9 @@ final class Route
      * @var array
      */
     public $parameters;
+
+    /**
+     * @var boolean
+     */
+    public $templated = false;
 }

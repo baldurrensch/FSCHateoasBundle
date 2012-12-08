@@ -23,4 +23,10 @@ interface RelationMetadataInterface
      * @return null|RelationContentMetadataInterface
      */
     public function getContent();
+
+    /**
+     * Whether that Relation has a templated URL
+     * @return boolean
+     */
+    public function getTemplated();
 }
