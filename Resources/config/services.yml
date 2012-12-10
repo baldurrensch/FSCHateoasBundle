@@ -28,6 +28,7 @@ services:
             - @fsc_hateoas.routing.generator
             - @fsc_hateoas.metadata.factory
             - @fsc_hateoas.factory.parameters
+            - @fsc_hateoas.routing.generator.templated
 
     fsc_hateoas.factory.parameters:
         class: %fsc_hateoas.factory.parameters.class%
@@ -105,3 +106,8 @@ services:
         class: %fsc_hateoas.routing.generator.class%
         arguments:
             - @router
+
+    # fsc_hateoas.routing.generator.templated:
+    #     class: %fsc_hateoas.routing.generator.class%
+    #     arguments:
+    #         - @hautelook.router.template=

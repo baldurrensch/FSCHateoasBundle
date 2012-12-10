@@ -14,7 +14,7 @@ abstract class AbstractLinkFactory
     public function __construct(UrlGeneratorInterface $urlGenerator, UrlGeneratorInterface $templatedUrlGenerator = null)
     {
         $this->urlGenerator = $urlGenerator;
-        $this->templatedUrlGenerator = $templatedUrlGenerator;
+        $this->templatedUrlGenerator = ($templatedUrlGenerator) ? $templatedUrlGenerator : $urlGenerator;
     }
 
     public static function createLink($rel, $href)
@@ -29,7 +29,6 @@ abstract class AbstractLinkFactory
     public function generateUrl($name, $parameters = array(), $templated = false)
     {
         ksort($parameters); // Have consistent url query strings, for the tests
-        var_dump($templated);
 
         $urlGenerator = $templated ? $this->templatedUrlGenerator : $this->urlGenerator;
 
