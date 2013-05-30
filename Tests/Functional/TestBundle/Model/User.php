@@ -47,4 +47,9 @@ class User
 
         return $user;
     }
+
+    public function getDynamicRel()
+    {
+        return "this/is/a/rel/from/a/property_path";
+    }
 }

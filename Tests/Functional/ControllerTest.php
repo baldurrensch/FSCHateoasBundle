@@ -293,7 +293,8 @@ JSON;
                 ],
                 "users":{"href":"http:\/\/localhost\/api\/users"},
                 "last-post":{"href":"http:\/\/localhost\/api\/users\/1\/last-post"},
-                "posts":{"href":"http:\/\/localhost\/api\/users\/1\/posts"}
+                "posts":{"href":"http:\/\/localhost\/api\/users\/1\/posts"},
+                "this/is/a/rel/from/a/property_path":{"href":"http:\/\/localhost\/api\/users"}
             },
             "_embedded":{
                 "last-post":{

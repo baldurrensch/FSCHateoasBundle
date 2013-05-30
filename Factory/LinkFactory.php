@@ -2,6 +2,7 @@
 
 namespace FSC\HateoasBundle\Factory;
 
+use Symfony\Component\PropertyAccess\Exception\NoSuchPropertyException;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 use Symfony\Component\PropertyAccess\PropertyPath;
@@ -94,6 +95,17 @@ class LinkFactory extends AbstractLinkFactory implements LinkFactoryInterface
             );
         }
 
-        return $this->createLink($relationMetadata->getRel(), $href, $relationMetadata->getAttributes());
+        $relation = $relationMetadata->getRel();
+
+        if (!empty($relation)) {
+            $propertyPath = new PropertyPath(trim($relation, '.'));
+            try {
+                $relation = $this->propertyAccessor->getValue($object, $propertyPath);
+            } catch (NoSuchPropertyException $e) {
+                // Nothing to do, just keep the relation
+            }
+        }
+
+        return $this->createLink($relation, $href, $relationMetadata->getAttributes());
     }
 }
