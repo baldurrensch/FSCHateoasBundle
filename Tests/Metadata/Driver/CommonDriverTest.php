@@ -169,5 +169,17 @@ class CommonDriverTest extends \PHPUnit_Framework_TestCase
             '.parent' => null
         );
         $this->assertEquals($expectedExcludedValues, $relationMetadata->getExcludeIf());
+
+        $n++;
+
+        $relationMetadata = $relationsMetadata[$n];
+
+        $this->assertEquals('alternate_host', $relationMetadata->getRel());
+        $this->assertEquals('homepage', $relationMetadata->getRoute());
+
+        $optionsArray = array(
+            'host' => 'alternate_host'
+        );
+        $this->assertEquals($optionsArray, $relationMetadata->getOptions());
     }
 }

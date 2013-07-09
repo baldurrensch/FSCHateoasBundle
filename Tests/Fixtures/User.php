@@ -35,6 +35,7 @@ use FSC\HateoasBundle\Annotation as Rest;
  * )
  * @Rest\Relation("templated", href = @Rest\Route("homepage"), attributes = { "isTemplated" = true })
  * @Rest\Relation("excluded", href = @Rest\Route("homepage"), excludeIf = { ".parent" = null } )
+ * @Rest\Relation("alternate_host", href = @Rest\Route("homepage", options = { "host" = "alternate_host" } ) )
  */
 class User
 {

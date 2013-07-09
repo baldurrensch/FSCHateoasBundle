@@ -35,8 +35,22 @@ abstract class AbstractLinkFactory
         $alias = !empty($options['router']) ? $options['router'] : 'default';
         $urlGenerator = $this->relationUrlGenerator->getUrlGenerator($alias);
 
+        if (isset($options['host'])) {
+            $context = $urlGenerator->getContext();
+            $contextBefore = clone $context;
+
+            $context->setHost($options['host']);
+            $urlGenerator->setContext($context);
+        }
+
         $absolute = isset($options['absolute']) ? $options['absolute'] : $this->forceAbsolute;
 
-        return $urlGenerator->generate($name, $parameters, $absolute);
+        $link = $urlGenerator->generate($name, $parameters, $absolute);
+
+        if (!empty($contextBefore)) {
+            $urlGenerator->setContext($contextBefore);
+        }
+
+        return $link;
     }
 }

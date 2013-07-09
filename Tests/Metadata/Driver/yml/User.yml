@@ -55,3 +55,8 @@ FSC\HateoasBundle\Tests\Fixtures\User:
               route: homepage
           exclude_if:
               ".parent": ~
+        - rel: alternate_host
+          href:
+              route: homepage
+              options:
+                  host: alternate_host

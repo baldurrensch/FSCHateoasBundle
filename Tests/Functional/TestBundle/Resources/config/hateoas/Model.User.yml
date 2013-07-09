@@ -36,3 +36,10 @@ FSC\HateoasBundle\Tests\Functional\TestBundle\Model\User:
                   identifier: .id
         - rel: dynamic_href
           href: .dynamicHref
+        - rel: alternate_host
+          href:
+              route: api_user_get
+              parameters:
+                  identifier: .id
+              options:
+                  host: alternate-host

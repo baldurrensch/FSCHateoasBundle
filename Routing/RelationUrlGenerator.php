@@ -31,12 +31,20 @@ class RelationUrlGenerator
         }
 
         $options = $relationMetadata->getOptions();
+        print_r($options);
         $alias = !empty($options['router']) ? $options['router'] : 'default';
         $urlGenerator = $this->getUrlGenerator($alias);
 
         $absolute = $this->forceAbsolute;
         if (isset($options['absolute'])) {
             $absolute = $options['absolute'];
+        }
+
+        if (isset($options['host'])) {
+            echo "Have host";
+            $context = $urlGenerator->getContext();
+            $context->setHost($options['host']);
+            $urlGenerator->setContext($context);
         }
 
         return $urlGenerator->generate(
